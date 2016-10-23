@@ -3,6 +3,8 @@ package com.kodelabs.boilerplate.presentation.presenters.impl;
 import com.kodelabs.boilerplate.domain.executor.Executor;
 import com.kodelabs.boilerplate.domain.executor.MainThread;
 import com.kodelabs.boilerplate.domain.interactors.SampleInteractor;
+import com.kodelabs.boilerplate.domain.interactors.WelcomingInteractor;
+import com.kodelabs.boilerplate.domain.interactors.impl.WelcomeInteractorImpl;
 import com.kodelabs.boilerplate.presentation.presenters.base.AbstractPresenter;
 import com.kodelabs.boilerplate.presentation.presenters.MainPresenter;
 
@@ -10,7 +12,7 @@ import com.kodelabs.boilerplate.presentation.presenters.MainPresenter;
  * Created by dmilicic on 12/13/15.
  */
 public class MainPresenterImpl extends AbstractPresenter implements MainPresenter,
-        SampleInteractor.Callback {
+        WelcomingInteractor.Callback {
 
     private MainPresenter.View mView;
 
