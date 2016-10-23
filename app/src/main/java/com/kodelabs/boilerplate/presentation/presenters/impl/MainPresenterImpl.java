@@ -23,7 +23,18 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
 
     @Override
     public void resume() {
+        mView.showProgress();
 
+        // initialize the interactor
+        WelcomingInteractor interactor = new WelcomeInteractorImpl(
+                mExecutor,
+                mMainThread,
+                this,
+                mMessageRepository
+        );
+
+        // run the interactor
+        interactor.execute();
     }
 
     @Override
