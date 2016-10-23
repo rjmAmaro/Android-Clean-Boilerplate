@@ -5,6 +5,7 @@ import com.kodelabs.boilerplate.domain.executor.MainThread;
 import com.kodelabs.boilerplate.domain.interactors.SampleInteractor;
 import com.kodelabs.boilerplate.domain.interactors.WelcomingInteractor;
 import com.kodelabs.boilerplate.domain.interactors.impl.WelcomeInteractorImpl;
+import com.kodelabs.boilerplate.domain.repository.MessageRepository;
 import com.kodelabs.boilerplate.presentation.presenters.base.AbstractPresenter;
 import com.kodelabs.boilerplate.presentation.presenters.MainPresenter;
 
@@ -15,12 +16,15 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
         WelcomingInteractor.Callback {
 
     private MainPresenter.View mView;
+    private MessageRepository mMessageRepository;
 
     public MainPresenterImpl(Executor executor,
                              MainThread mainThread,
-                             View view) {
+                             View view,
+                             MessageRepository messageRepository) {
         super(executor, mainThread);
         mView = view;
+        mMessageRepository = messageRepository;
     }
 
     @Override
@@ -57,5 +61,18 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
     @Override
     public void onError(String message) {
 
+    }
+
+    @Override
+    public void onMessageRetrieved(String message) {
+        mView.hideProgress();
+        mView.displayWelcomeMessage(message);
+
+    }
+
+    @Override
+    public void onRetrievalFailed(String error) {
+        mView.hideProgress();
+        onError(error);
     }
 }
