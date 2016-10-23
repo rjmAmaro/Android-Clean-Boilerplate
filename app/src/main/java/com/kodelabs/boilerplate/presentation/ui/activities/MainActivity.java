@@ -2,12 +2,18 @@ package com.kodelabs.boilerplate.presentation.ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.kodelabs.boilerplate.R;
 import com.kodelabs.boilerplate.presentation.presenters.MainPresenter;
 import com.kodelabs.boilerplate.presentation.presenters.MainPresenter.View;
 
+import butterknife.Bind;
+
 public class MainActivity extends AppCompatActivity implements View {
+
+    @Bind(R.id.welcome_textview)
+    TextView mWelcomeTextView;
 
     private MainPresenter mainPresenter;
 
@@ -38,5 +44,10 @@ public class MainActivity extends AppCompatActivity implements View {
     @Override
     public void showError(String message) {
 
+    }
+
+    @Override
+    public void displayWelcomeMessage(String msg) {
+        mWelcomeTextView.setText(msg);
     }
 }
