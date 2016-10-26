@@ -1,5 +1,7 @@
 package com.kodelabs.boilerplate.domain.interactors.impl;
 
+import android.util.Log;
+
 import com.kodelabs.boilerplate.domain.executor.Executor;
 import com.kodelabs.boilerplate.domain.executor.MainThread;
 import com.kodelabs.boilerplate.domain.interactors.base.AbstractInteractor;
@@ -23,6 +25,7 @@ public class WelcomeInteractorImpl extends AbstractInteractor implements Welcomi
         super(threadExecutor, mainThread);
         this.mCallback = callback;
         this.mMessageRepository = messageRepository;
+        Log.d("INTERACTOR", "WelcomeInteractorImpl was created");
     }
 
     private void notifyError() {
@@ -35,16 +38,19 @@ public class WelcomeInteractorImpl extends AbstractInteractor implements Welcomi
     }
 
     private void postMessage(final String msg) {
+        Log.d("INTERACTOR", "@postMessage()");
         mMainThread.post(new Runnable() {
             @Override
             public void run() {
                 mCallback.onMessageRetrieved(msg);
             }
         });
+        Log.d("INTERACTOR", "@postMessage() - END");
     }
 
     @Override
     public void run() {
+        Log.d("INTERACTOR", "@run()");
         // retrieve the message
         final String message = mMessageRepository.getWelcomeMessage();
 
@@ -57,5 +63,6 @@ public class WelcomeInteractorImpl extends AbstractInteractor implements Welcomi
 
         // we have retrieved our message, notify the UI on the main thread
         postMessage(message);
+        Log.d("INTERACTOR", "@run() - END");
     }
 }

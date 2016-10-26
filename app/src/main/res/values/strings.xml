@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Android-Clean-Boilerplate</string>
+    <string name="app_name">Workshop Clean</string>
+    <string name="write_your_text">Write your text</string>
+    <string name="edit_welcome_text_bt">Submit</string>
 </resources>

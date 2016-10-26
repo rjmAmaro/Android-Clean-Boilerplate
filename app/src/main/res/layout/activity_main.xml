@@ -10,7 +10,32 @@
     tools:context=".presentation.ui.activities.MainActivity">
 
     <TextView
+        android:id="@+id/welcome_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Hello World!" />
+
+    <EditText
+        android:id="@+id/edit_welcome_text"
+        android:hint="@string/write_your_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/welcome_textview"
+        android:layout_marginTop="100dp"
+        />
+
+    <Button
+        android:id="@+id/edit_welcome_text_bt"
+        android:onClick="changeText"
+        android:text="@string/edit_welcome_text_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_welcome_text"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        />
+
 </RelativeLayout>

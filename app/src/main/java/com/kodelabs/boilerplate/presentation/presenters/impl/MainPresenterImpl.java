@@ -1,5 +1,7 @@
 package com.kodelabs.boilerplate.presentation.presenters.impl;
 
+import android.util.Log;
+
 import com.kodelabs.boilerplate.domain.executor.Executor;
 import com.kodelabs.boilerplate.domain.executor.MainThread;
 import com.kodelabs.boilerplate.domain.interactors.SampleInteractor;
@@ -25,10 +27,12 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
         super(executor, mainThread);
         mView = view;
         mMessageRepository = messageRepository;
+        Log.d("PRESENTER", "MainPresenterImpl was created");
     }
 
     @Override
     public void resume() {
+        Log.d("PRESENTER", "@resume()");
         mView.showProgress();
 
         // initialize the interactor
@@ -41,6 +45,7 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
 
         // run the interactor
         interactor.execute();
+        Log.d("PRESENTER", "@resume() - END");
     }
 
     @Override
@@ -65,9 +70,10 @@ public class MainPresenterImpl extends AbstractPresenter implements MainPresente
 
     @Override
     public void onMessageRetrieved(String message) {
+        Log.d("PRESENTER", "@onMessageRetrieved()");
         mView.hideProgress();
         mView.displayWelcomeMessage(message);
-
+        Log.d("PRESENTER", "@onMessageRetrieved() - Message was displayed");
     }
 
     @Override
